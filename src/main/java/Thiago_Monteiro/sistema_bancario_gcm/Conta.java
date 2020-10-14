@@ -19,7 +19,7 @@ public class Conta {
 
 	public void mostrarConta() {
 		System.out.println("Nome do usuario: " + nomeUsuario);
-		System.out.println("Saldo da Conta: R$" + saldo);
+		// System.out.println("Saldo da Conta: R$" + saldo);
 		System.out.println("id da Conta: " + id);
 	}
 

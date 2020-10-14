@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Thiago_Monteiro.sistema_bancario_gcm.exception.CreditoException;
 import Thiago_Monteiro.sistema_bancario_gcm.exception.DebitoException;
 import Thiago_Monteiro.sistema_bancario_gcm.exception.ListaDeContasException;
+import Thiago_Monteiro.sistema_bancario_gcm.exception.TransferenciaException;
 
 public class SistemaBancario {
 	private final ArrayList<Conta> contas = new ArrayList<>();
@@ -48,8 +49,17 @@ public class SistemaBancario {
 		}
 	}
 
-	public void checarSaldo() {
-
+	public void checarSaldo(int idConta) {
+		boolean foundIt = false;
+		for (Conta elem : contas) {
+			if (elem.getId() == idConta) {
+				foundIt = true;
+				System.out.println("O saldo da conta e: R$" + elem.getSaldo());
+			}
+		}
+		if (!foundIt) {
+			throw new ListaDeContasException("Conta nao encontrada.");
+		}
 	}
 
 	public void realizarCredito(int idConta, double valor) {
@@ -88,7 +98,30 @@ public class SistemaBancario {
 		}
 	}
 
-	public void realizarTransferencia() {
-
+	public void realizarTransferencia(int id1, int id2, double valor) {
+		boolean foundIt1 = false;
+		boolean foundIt2 = false;
+		for (Conta elem1 : contas) {
+			if (elem1.getId() == id1) {
+				foundIt1 = true;
+				for (Conta elem2 : contas) {
+					if (elem2.getId() == id2) {
+						foundIt2 = true;
+						if (elem1.getSaldo() < valor) {
+							throw new TransferenciaException("Saldo insuficiente para transferencia.");
+						} else if (elem1.getSaldo() >= valor) {
+							elem1.setSaldo(elem1.getSaldo() - valor);
+							elem2.setSaldo(elem2.getSaldo() + valor);
+						}
+					}
+				}
+			}
+		}
+		if (!foundIt1) {
+			throw new ListaDeContasException("Conta 1 nao encontrada.");
+		}
+		if (!foundIt2) {
+			throw new ListaDeContasException("Conta 2 nao encontrada.");
+		}
 	}
 }
