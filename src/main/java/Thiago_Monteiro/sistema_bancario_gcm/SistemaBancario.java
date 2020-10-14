@@ -2,6 +2,8 @@ package Thiago_Monteiro.sistema_bancario_gcm;
 
 import java.util.ArrayList;
 
+import Thiago_Monteiro.sistema_bancario_gcm.exception.ListaDeContasException;
+
 public class SistemaBancario {
 	private final ArrayList<Conta> contas = new ArrayList<>();
 
@@ -20,7 +22,7 @@ public class SistemaBancario {
 			}
 		}
 		if (size == contas.size()) {
-			// exception
+			throw new ListaDeContasException("Nao foi possivel encontrar a conta para ser removida.");
 		}
 	}
 
@@ -36,7 +38,7 @@ public class SistemaBancario {
 				contas.add(conta);
 			}
 			if (!addIt) {
-				// exception
+				throw new ListaDeContasException("Nao foi possivel adicionar a conta.");
 			}
 		}
 	}
