@@ -5,6 +5,7 @@ public class Conta {
 	private double saldo;
 	private static int numeroDeContas = 0;
 	private final int id = numeroDeContas;
+	private double saldoCredito;
 
 	public Conta() {
 		numeroDeContas++;
@@ -40,5 +41,13 @@ public class Conta {
 
 	public int getId() {
 		return id;
+	}
+
+	public double getSaldoCredito() {
+		return saldoCredito;
+	}
+
+	public void setSaldoCredito(double saldoCredito) {
+		this.saldoCredito = saldoCredito;
 	}
 }
