@@ -4,17 +4,27 @@ public class Conta {
 	private String nomeUsuario;
 	private double saldo;
 	private static int numeroDeContas = 0;
-	private final int id = numeroDeContas;
+	private int id = 0;
 	private double saldoCredito;
 
+	// Para testes apenas
+	public static void setNumeroDeContas(int n) {
+		numeroDeContas = n;
+	}
+
 	public Conta() {
-		numeroDeContas++;
+		id = numeroDeContas++;
 	}
 
 	public Conta(String nome, double saldo) {
 		this.nomeUsuario = nome;
 		this.saldo = saldo;
-		numeroDeContas++;
+		id = numeroDeContas++;
+	}
+
+	@Override
+	protected void finalize() {
+		numeroDeContas--;
 	}
 
 	public void mostrarConta() {

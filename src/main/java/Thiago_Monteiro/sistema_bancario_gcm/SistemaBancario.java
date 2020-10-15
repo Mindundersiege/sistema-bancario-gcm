@@ -20,6 +20,20 @@ public class SistemaBancario {
 		}
 	}
 
+	public Conta getConta(int id) {
+		boolean foundIt = false;
+		for (Conta elem : contas) {
+			if (elem.getId() == id) {
+				foundIt = true;
+				return elem;
+			}
+		}
+		if (!foundIt) {
+			throw new ListaDeContasException("Nao foi possivel encontrar a conta para ser removida.");
+		}
+		return null;
+	}
+
 	public void removerConta(int id) {
 		boolean foundIt = false;
 		for (Conta elem : contas) {
@@ -79,21 +93,22 @@ public class SistemaBancario {
 	}
 
 	public void realizarDebito(int idConta, double valor) {
-		if (valor < 0) {
+		if (valor < 0.0) {
 			throw new DebitoException("Valor negativo.");
 		}
 		boolean foundIt = false;
 		for (Conta elem : contas) {
 			if (elem.getId() == idConta) {
 				foundIt = true;
-				if (elem.getSaldo() >= valor) {
-					elem.setSaldo((elem.getSaldo() - valor));
-				} else if (elem.getSaldo() < valor) {
+				if (elem.getSaldo() < valor) {
 					throw new DebitoException("Valor maior do que saldo disponivel.");
+				} else if (elem.getSaldo() >= valor) {
+					elem.setSaldo((elem.getSaldo() - valor));
 				}
 			}
 		}
 		if (!foundIt) {
+
 			throw new ListaDeContasException("Conta nao encontrada.");
 		}
 	}
@@ -101,6 +116,9 @@ public class SistemaBancario {
 	public void realizarTransferencia(int id1, int id2, double valor) {
 		boolean foundIt1 = false;
 		boolean foundIt2 = false;
+		if (valor < 0) {
+			throw new TransferenciaException("Valor negativo.");
+		}
 		for (Conta elem1 : contas) {
 			if (elem1.getId() == id1) {
 				foundIt1 = true;
