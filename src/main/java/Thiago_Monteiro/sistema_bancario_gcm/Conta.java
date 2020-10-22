@@ -3,9 +3,9 @@ package Thiago_Monteiro.sistema_bancario_gcm;
 public class Conta {
 	private String nomeUsuario;
 	private double saldo;
+	private double saldoCredito;
 	private static int numeroDeContas = 0;
 	private int id = 0;
-	private double saldoCredito;
 
 	// Para testes apenas
 	public static void setNumeroDeContas(int n) {
@@ -14,12 +14,16 @@ public class Conta {
 
 	public Conta() {
 		id = numeroDeContas++;
+		this.nomeUsuario = "";
+		this.saldo = 0.0;
+		this.saldoCredito = 0.0;
 	}
 
 	public Conta(String nome, double saldo) {
 		this.nomeUsuario = nome;
 		this.saldo = saldo;
 		id = numeroDeContas++;
+		this.saldoCredito = 0.0;
 	}
 
 	@Override
