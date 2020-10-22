@@ -10,7 +10,7 @@
 
   <name>sistema-bancario-gcm</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>192.168.0.57:8080</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,6 +19,8 @@
   </properties>
 
   <dependencies>
+	<!-- https://mvnrepository.com/artifact/org.json/json -->
+	  
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
