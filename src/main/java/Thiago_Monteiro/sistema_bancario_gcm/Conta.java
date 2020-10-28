@@ -6,6 +6,7 @@ public class Conta {
 	private double saldoCredito;
 	private static int numeroDeContas = 0;
 	private int id = 0;
+	private double bonus = 0;
 
 	// Para testes apenas
 	public static void setNumeroDeContas(int n) {
@@ -63,5 +64,13 @@ public class Conta {
 
 	public void setSaldoCredito(double saldoCredito) {
 		this.saldoCredito = saldoCredito;
+	}
+
+	public double getBonus() {
+		return bonus;
+	}
+
+	public void setBonus(double bonus) {
+		this.bonus = bonus;
 	}
 }

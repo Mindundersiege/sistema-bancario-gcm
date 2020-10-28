@@ -85,6 +85,7 @@ public class SistemaBancario {
 			if (elem.getId() == idConta) {
 				foundIt = true;
 				elem.setSaldoCredito((elem.getSaldoCredito() + valor));
+				elem.setBonus(elem.getBonus() + (valor / 100));
 			}
 		}
 		if (!foundIt) {
