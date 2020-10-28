@@ -3,7 +3,7 @@ package Thiago_Monteiro.sistema_bancario_gcm;
 public class Conta {
 	private String nomeUsuario;
 	private double saldo;
-	private double saldoCredito;
+	private double saldoDeposito;
 	private static int numeroDeContas = 0;
 	private int id = 0;
 	private double bonus = 0;
@@ -17,14 +17,14 @@ public class Conta {
 		id = numeroDeContas++;
 		this.nomeUsuario = "";
 		this.saldo = 0.0;
-		this.saldoCredito = 0.0;
+		this.saldoDeposito = 0.0;
 	}
 
 	public Conta(String nome, double saldo) {
 		this.nomeUsuario = nome;
 		this.saldo = saldo;
 		id = numeroDeContas++;
-		this.saldoCredito = 0.0;
+		this.saldoDeposito = 0.0;
 	}
 
 	@Override
@@ -58,12 +58,12 @@ public class Conta {
 		return id;
 	}
 
-	public double getSaldoCredito() {
-		return saldoCredito;
+	public double getSaldoDeposito() {
+		return saldoDeposito;
 	}
 
-	public void setSaldoCredito(double saldoCredito) {
-		this.saldoCredito = saldoCredito;
+	public void setSaldoDeposito(double saldoDeposito) {
+		this.saldoDeposito = saldoDeposito;
 	}
 
 	public double getBonus() {

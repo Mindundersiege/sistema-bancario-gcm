@@ -1,49 +1,49 @@
 package Thiago_Monteiro.sistema_bancario_gcm;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 import Thiago_Monteiro.sistema_bancario_gcm.command.Command;
-import Thiago_Monteiro.sistema_bancario_gcm.command.RealizarCreditoCommand;
-import Thiago_Monteiro.sistema_bancario_gcm.exception.CreditoException;
-import Thiago_Monteiro.sistema_bancario_gcm.exception.ListaDeContasException;
+import Thiago_Monteiro.sistema_bancario_gcm.command.RealizarDepositoCommand;
+
+//import org.junit.Test;
 
 @RunWith(Parameterized.class)
-public class RealizarCreditoExceptionalTest {
+public class RealizarDepositoTest {
 
 	@Parameters()
 	public static Collection<Object[]> buildData() {
 		return Arrays.asList(new Object[][] { //
-				{ 8, 100.0, ListaDeContasException.class, "Conta nao encontrada." }, //
-						{ 1, -1.0, CreditoException.class, "Valor negativo." }, //
+				{ 0, 1400.00, 1400.0 }, //
+						{ 1, 0.0, 0.0 }, //
+						{ 2, 1.0, 1.0 }, //
+						{ 3, 0.5, 0.5 }, //
+						{ 4, 1192839.282, 1192839.282 }, //
+						{ 5, 1000.0, 1000.0 },//
 				});
 	}
 
-	@Rule
-	public ExpectedException e = ExpectedException.none();
-
 	@Parameter(0)
-	public int id;
+	public int idConta;
 
 	@Parameter(1)
-	public double valor;
+	public double saldoCredito;
 
 	@Parameter(2)
-	public Class<? extends Exception> expectedExceptionType;
-
-	@Parameter(3)
-	public String expectedErrorMessage;
+	public double expectedSaldo;
 
 	@Test
-	public void testParseInvalidRank() {
+	public void testRealizarDebito() {
 		Conta.setNumeroDeContas(0);
 		SistemaBancario sis = new SistemaBancario();
 		Conta c1 = new Conta("Fernando Henrique", 1400.00);
@@ -58,12 +58,9 @@ public class RealizarCreditoExceptionalTest {
 		sis.adicionarConta(c4);
 		sis.adicionarConta(c5);
 		sis.adicionarConta(c6);
-
-		e.expect(expectedExceptionType);
-		e.expectMessage(expectedErrorMessage);
-
-		Command realizarCre = new RealizarCreditoCommand(sis, id, valor);
+		Command realizarCre = new RealizarDepositoCommand(sis, idConta, saldoCredito);
 		realizarCre.execute();
+		assertThat((sis.getConta(idConta)).getSaldoDeposito(), is(equalTo(expectedSaldo)));
 	}
 
 }

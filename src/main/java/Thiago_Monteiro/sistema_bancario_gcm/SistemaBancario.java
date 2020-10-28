@@ -2,8 +2,8 @@ package Thiago_Monteiro.sistema_bancario_gcm;
 
 import java.util.ArrayList;
 
-import Thiago_Monteiro.sistema_bancario_gcm.exception.CreditoException;
 import Thiago_Monteiro.sistema_bancario_gcm.exception.DebitoException;
+import Thiago_Monteiro.sistema_bancario_gcm.exception.DepositoException;
 import Thiago_Monteiro.sistema_bancario_gcm.exception.ListaDeContasException;
 import Thiago_Monteiro.sistema_bancario_gcm.exception.TransferenciaException;
 
@@ -76,15 +76,15 @@ public class SistemaBancario {
 		}
 	}
 
-	public void realizarCredito(int idConta, double valor) {
+	public void realizarDeposito(int idConta, double valor) {
 		if (valor < 0) {
-			throw new CreditoException("Valor negativo.");
+			throw new DepositoException("Valor negativo.");
 		}
 		boolean foundIt = false;
 		for (Conta elem : contas) {
 			if (elem.getId() == idConta) {
 				foundIt = true;
-				elem.setSaldoCredito((elem.getSaldoCredito() + valor));
+				elem.setSaldoDeposito((elem.getSaldoDeposito() + valor));
 				elem.setBonus(elem.getBonus() + (valor / 100));
 			}
 		}
