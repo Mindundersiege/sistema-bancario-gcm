@@ -7,9 +7,11 @@ import Thiago_Monteiro.sistema_bancario_gcm.exception.DepositoException;
 import Thiago_Monteiro.sistema_bancario_gcm.exception.ListaDeContasException;
 import Thiago_Monteiro.sistema_bancario_gcm.exception.TransferenciaException;
 
+// Classe para gerenciar sistema bancario
 public class SistemaBancario {
 	private final ArrayList<Conta> contas = new ArrayList<>();
 
+	// Mostra contas presentes no sistema
 	public void mostrarContas() {
 		if (contas == null || contas.isEmpty()) {
 			throw new ListaDeContasException("Lista vazia.");
@@ -20,6 +22,7 @@ public class SistemaBancario {
 		}
 	}
 
+	// Procura uma conta por um ID
 	public Conta getConta(int id) {
 		boolean foundIt = false;
 		for (Conta elem : contas) {
@@ -34,6 +37,7 @@ public class SistemaBancario {
 		return null;
 	}
 
+	// Procura e remove uma conta por um ID
 	public void removerConta(int id) {
 		boolean foundIt = false;
 		for (Conta elem : contas) {
@@ -47,6 +51,7 @@ public class SistemaBancario {
 		}
 	}
 
+	// Adiciona uma nova conta
 	public void adicionarConta(Conta conta) {
 		boolean addIt = true;
 		if (conta != null) {
@@ -63,6 +68,7 @@ public class SistemaBancario {
 		}
 	}
 
+	// Checa saldo da conta pelo ID
 	public void checarSaldo(int idConta) {
 		boolean foundIt = false;
 		for (Conta elem : contas) {
@@ -76,6 +82,7 @@ public class SistemaBancario {
 		}
 	}
 
+	// Realiza deposito em conta
 	public void realizarDeposito(int idConta, double valor) {
 		if (valor < 0) {
 			throw new DepositoException("Valor negativo.");
@@ -93,6 +100,7 @@ public class SistemaBancario {
 		}
 	}
 
+	// Realiza debito em conta
 	public void realizarDebito(int idConta, double valor) {
 		if (valor < 0.0) {
 			throw new DebitoException("Valor negativo.");
@@ -114,6 +122,7 @@ public class SistemaBancario {
 		}
 	}
 
+	// Realiza transferencia entre contas
 	public void realizarTransferencia(int id1, int id2, double valor) {
 		boolean foundIt1 = false;
 		boolean foundIt2 = false;
