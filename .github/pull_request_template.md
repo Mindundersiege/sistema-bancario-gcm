@@ -1,13 +1,13 @@
-#Autor do Commit
+# Autor do Commit
 - ADICIONE O NOME AQUI
 
-#Data do Commit 
+# Data do Commit 
 - ADICIONE A DATA DO COMMIT AQUI
 
-#Arquivos Envolvidos
+# Arquivos Envolvidos
 - ARQUIVO 1
 - ARQUIVO 2
 - ADICIONE ARQUIVOS NECESSARIOS
 
-#Comentário do Log 
+# Comentário do Log 
 - ADICIONE COMENTÁRIO DO LOG
